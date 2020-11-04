@@ -1,0 +1,141 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#sidebar {
+  box-shadow: 2px 0px 10px 0px #5d5a5a;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: #29335C;
+    color: #F3A712;
+    transition: all 0.3s;
+}
+body{
+  background: rgb(238,174,202);
+background: radial-gradient(circle, rgb(245 185 211) 0%, rgb(192 220 253) 100%);
+}
+.cat{
+  text-align: center;
+}
+
+.catbutton{
+  width: 100%;
+  font-size: 2em;
+}
+button.btn.catbutton{
+    color:#F3A712;
+}
+.catbutton:hover{
+  background-color: #297373;
+}
+.barmenu{
+  background-color: blue;
+}
+#content{
+  padding-left: 20%;
+  text-align: center;
+
+}
+.affichage{
+  width: 100%;
+}
+.citation{
+  background: rgb(245,255,0);
+background: linear-gradient(90deg, rgba(245,255,0,1) 0%, rgb(255 201 2) 50%, rgb(247 148 61) 100%);
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      width: 100%;
+      min-width: 100%;
+      height: auto;
+      padding: 6%;
+      margin-bottom: 5%;
+      font-size: 1.5em;
+
+}
+.aucunecit{
+  width: 50%;
+    height: auto;
+    background-color: #f53333c2;
+    border: solid 3px red;
+}
+.supprimercit {
+    margin-top: 2%;
+}
+.like{
+  width: 100%;
+  height: 100%;
+}
+.auteur{
+  padding-top: 10%;
+  font-weight: bold;
+  font-size: 1em;
+}
+.fa-random{
+      font-size: 5em;
+}
+.fa-heart{
+  font-size: 5em;
+  color: red;
+}
+.coeurmenu{
+  font-size: 1em;
+  color: red;
+}
+.likebutton{
+  border-radius: 8px;
+  border: solid 1px red;
+  background-color: #f72929;
+}
+.likebutton i{
+  color: #fff;
+}
+.likebutton:hover{
+    background-color: #f7292954;
+     transition: 0.3s;
+}
+.likebutton i:hover{
+  color: red;
+   transition: 0.3s;
+}
+.disabledcoeur{
+  background-color: #f7292954;
+}
+.disabledcoeur i{
+    color: red;
+}
+.info p{
+  margin-top: 0;
+  margin-bottom: 0rem;
+}
+.info{
+  border-radius: 5px;
+    margin: auto;
+        width: 52%;
+    margin-top: 2%;
+}
+#favoritip{
+  border: solid 1px red;
+      background-color: #e893a6;
+      visibility:hidden;
+      opacity: 0;
+      -webkit-transition: visibility 0s, opacity 0.2s linear;
+}
+#aleatip{
+      border: solid 1px #138496;
+      background-color: #17a2b8;
+      visibility:hidden;
+      opacity: 0;
+      -webkit-transition: visibility 0s, opacity 0.2s linear;
+}
+.likebutton:hover + #favoritip{
+    visibility: visible;
+    opacity: 1;
+}
+.btn-info:hover + #aleatip{
+    visibility: visible;
+    opacity: 1;
+}
