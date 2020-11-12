@@ -171,3 +171,37 @@ background: linear-gradient(90deg, rgba(245,255,0,1) 0%, rgb(255 201 2) 50%, rgb
     visibility: visible;
     opacity: 1;
 }
+
+
+
+
+@media screen and (min-width: 425px) and (max-width: 1024px) {
+  .citation {
+    min-width: 110%;
+  }
+  .liking{
+    margin-left: 5%;
+    margin-right: -5%;
+  }
+  .citfav{
+    margin-left: 5%;
+    margin-bottom: -2%;
+    padding: 4%;
+    min-width: 100%;
+  }
+}
+/* @media screen and (min-width: 425px) and (max-width: 1024px) {
+  .citation {
+    min-width: 110%;
+  }
+  .liking{
+    margin-left: 5%;
+    margin-right: -5%;
+  }
+  .citfav{
+    margin-left: 5%;
+    margin-bottom: -2%;
+    padding: 4%;
+    min-width: 100%;
+  }
+} */

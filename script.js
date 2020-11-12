@@ -1,5 +1,5 @@
-Vue.component('main-citation',{
-template: `<div class="row">
+Vue.component('main-citation', {
+  template: `<div class="row">
 <div class="titrecat col-lg-12">
 <h4>{{nomcategorie}}</h4><br/>
 </div>
@@ -21,81 +21,92 @@ template: `<div class="row">
 </div>
 </div>
 `,
-props: ['nomcategorie'],
-data: function(){return{
-  refrcompo:0,
-  citation:'',
-  name:''
-}},
-created () {
-  if (this.nomcategorie.length > 1 & this.nomcategorie != "Aléatoire"){
-      axios.get("https://sheetlabs.com/GUIG/citations?genre="+this.nomcategorie+"&_limit=1&_random=1")
-      .then(response => this.citation = response.data[0])
-      .catch(function (error) {
-        console.error(error);
-      });
-  }
-  else {
-  axios.get("https://sheetlabs.com/GUIG/citations?_limit=1&_random=1")
-   .then(response => this.citation = response.data[0])
-  .catch(function (error) {
-    console.error(error);
-  });
-}
-},
-methods:{
-  recharger: function(){
-        this.$emit('recharger');
-      },
-      ajoutlike: function(){
-        this.$emit('ajoutLike',this.citation.citation,this.citation.auteur)
-      },
+  props: ['nomcategorie','sdcitlikes'],
+  data: function() {
+    return {
+      refrcompo: 0,
+      citation: '',
+      name: ''
+    }
+  },
+  created() {
+    if (this.nomcategorie.length > 1 & this.nomcategorie != "Aléatoire") {
+      axios.get("https://sheetlabs.com/GUIG/citations?genre=" + this.nomcategorie + "&_limit=1&_random=1")
+        .then(response => this.citation = response.data[0])
+        .catch(function(error) {
+          console.error(error);
+        });
+    } else {
+      axios.get("https://sheetlabs.com/GUIG/citations?_limit=1&_random=1")
+        .then(response => this.citation = response.data[0])
+        .catch(function(error) {
+          console.error(error);
+        });
+    }
+  },
 
-}
+updated() {
+    for (var i=0; i < this.sdcitlikes.length; i++){
+    if(this.sdcitlikes[i].id == this.citation.id){
+      $(".likebutton").addClass("disabledcoeur");
+      $(".likebutton").attr("disabled", true);
+      $("#favtext").text("Citation aimée");
+  }}
+},
+methods: {
+    recharger: function() {
+      this.$emit('recharger');
+    },
+    ajoutlike: function() {
+      this.$emit('ajoutLike', this.citation.citation, this.citation.auteur,this.citation.id)
+    },
+
+  }
 })
 
-Vue.component('boutonlike',{
-template:`    <div class="col-3">
+Vue.component('boutonlike', {
+  template: `    <div class="col-3 liking">
   <div class="like">
   <button type="btn button" class="likebutton" v-on:click="likebutton()"><i class="fas fa-heart"></i></button>
-  <div class="info" id="favoritip"><p>Mettre en favori</p></div>
+  <div class="info" id="favoritip"><p id="favtext">Aimer la citation</p></div>
   </div>
   </div>`,
-methods:{
-likebutton: function(){
-  console.log('like');
-  $(".likebutton").addClass("disabledcoeur");
-    $(".likebutton").attr("disabled", true);
-  this.$emit('likeButton');
-},
+  methods: {
+    likebutton: function() {
+      console.log('like');
+      $(".likebutton").addClass("disabledcoeur");
+      $(".likebutton").attr("disabled", true);
+      $("#favtext").text("Citation aimée");
+      this.$emit('likeButton');
+    },
 
-}
+  }
 })
 
-Vue.component('renducitlike',{
-template:`<div class="row affichage">
-<h2 class="col-12"><i class="fas fa-heart coeurmenu"></i>Citations favorites<i class="fas fa-heart coeurmenu"></i></h2><br/><br/>
+Vue.component('renducitlike', {
+  template: `<div class="row affichage">
+<h2 class="col-12"><i class="fas fa-heart coeurmenu"></i>Mes citations aimées<i class="fas fa-heart coeurmenu"></i></h2><br/><br/>
 <renducitunique v-bind:citations="passecitations" v-on:emetdelete="suppcit(index)" v-for="(citation,index) in citations" :citation="citation" :key="citation.id"></renducitunique>
-<div v-if="citations.length < 1" class="col-12 aucunecit"><h4>Aucune citation favorite</h4></div>
+<div v-if="citations.length < 1" class="col-12 aucunecit"><h4>Aucune citation aimée</h4></div>
 </div>
 </div>`,
-props: ['citations'],
-data: function () {
+  props: ['citations'],
+  data: function() {
     return {
-        passecitations: this.citations[0],
+      passecitations: this.citations[0],
 
-      }
-},
-methods:{
-suppcit: function(index) {
-this.citations.splice(index,1);
-},
-}
+    }
+  },
+  methods: {
+    suppcit: function(index) {
+      this.citations.splice(index, 1);
+    },
+  }
 })
 
-Vue.component('renducitunique',{
-template:`<div class="col-12">
-<div class="citation">
+Vue.component('renducitunique', {
+  template: `<div class="col-12">
+<div class="citation citfav">
 <i>{{this.cita.cit}}</i>
 <br/>
 <span class="auteur">{{this.cita.auteur}}</span>
@@ -104,28 +115,28 @@ template:`<div class="col-12">
 </div>
 <br/><br/>
 </div>`,
-props: ['citation','index'],
-data: function () {
+  props: ['citation', 'index'],
+  data: function() {
     return {
-        cita: this.citation,
-        ind: this.index
+      cita: this.citation,
+      ind: this.index
     }
-},
-methods: {
-emetdelete: function(index) {
- this.$emit('emetdelete',index);
-},
-}
+  },
+  methods: {
+    emetdelete: function(index) {
+      this.$emit('emetdelete', index);
+    },
+  }
 })
 
 
 
-Vue.component('nav-bar',{
-template: `                  <nav id="sidebar">
+Vue.component('nav-bar', {
+  template: `                  <nav id="sidebar">
                     <div class="sidebar-header">
                         <h2 class="text-center">Menu</h2>
                           <ul class="nav flex-column cat">
-                                <li class="nav-item"><button class="btn catbutton" v-on:click="pagelike()"><i class="fas fa-heart coeurmenu"></i> Citations favorites</button>
+                                <li class="nav-item"><button class="btn catbutton" v-on:click="pagelike()"><i class="fas fa-heart coeurmenu"></i> Mes citations aimées</button>
                                 <li class="nav-item" v-for="categorie in lescategories">
                                   <button type="button" class="btn catbutton" v-on:click="changerpage(categorie)">{{categorie}}</button>
                                 </li>
@@ -136,20 +147,20 @@ template: `                  <nav id="sidebar">
                         </div>
                  </nav>
 `,
-props: ['lescategories'],
-methods: {
-changerpage: function(categorie) {
-this.$emit('pagechangee',categorie);
-},
-pagelike: function() {
-this.$emit('afficherLike');
-},
-}
+  props: ['lescategories'],
+  methods: {
+    changerpage: function(categorie) {
+      this.$emit('pagechangee', categorie);
+    },
+    pagelike: function() {
+      this.$emit('afficherLike');
+    },
+  }
 
 })
 
-Vue.component('svgcit',{
-template:`<svg version="1.1" id="svgcit" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+Vue.component('svgcit', {
+  template: `<svg version="1.1" id="svgcit" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1366 768" style="enable-background:new 0 0 1366 768;" xml:space="preserve">
 <g>
 	<path d="M354.4,184.5c-4.9,22-20.2,48.3-45.9,78.8c-27.7,32.9-51.3,49.3-70.9,49.3c-11.6,0-17.4-5.5-17.4-16.5
@@ -215,8 +226,8 @@ template:`<svg version="1.1" id="svgcit" xmlns="http://www.w3.org/2000/svg" xmln
 })
 
 var app = new Vue({
-el: '#app',
-template:`<div class="container-fluid">
+  el: '#app',
+  template: `<div class="container-fluid">
   <nav-bar v-bind:lescategories="categories" v-on:pagechangee="changerpage" v-on:afficherLike="pagelikes"></nav-bar>
 
      <div id="content">
@@ -226,45 +237,50 @@ template:`<div class="container-fluid">
         </div>
       </div>
     <renducitlike v-if="pagecitlike === true" v-bind:citations="citlikes"></renducitlike>
-    <main-citation v-else v-on:ajoutLike="tablike" v-on:recharger="rafraichi" v-bind:nomcategorie="nompage" :key='rcompo'></main-citation>
+    <main-citation v-else v-on:ajoutLike="tablike" v-on:recharger="rafraichi" v-bind:nomcategorie="nompage" v-bind:sdcitlikes="citlikes" :key='rcompo'></main-citation>
     </div>
     </div>
     </div>
   </div>`,
-data: function(){return{
-titre: 'Test',
-categories: ['Aléatoire','Amour','Bonheur','Argent','Histoire/Guerre','Vie/Mort','Travail','Politique'],
-nompage:'Aléatoire',
-rcompo:0,
-citlikes:[],
-idlike: 0,
-pagecitlike: false
-}
-},
-mounted() {
-    if(localStorage.saved) this.citlikes = JSON.parse(localStorage.saved);
+  data: function() {
+    return {
+      titre: 'Test',
+      categories: ['Aléatoire', 'Amour', 'Bonheur', 'Argent', 'Histoire/Guerre', 'Vie/Mort', 'Travail', 'Politique'],
+      nompage: 'Aléatoire',
+      rcompo: 0,
+      citlikes: [],
+      // idlike: 0,
+      pagecitlike: false
+    }
   },
-watch: {
+  mounted() {
+    if (localStorage.saved) this.citlikes = JSON.parse(localStorage.saved);
+  },
+  watch: {
     citlikes(newCitlikes) {
       localStorage.saved = JSON.stringify(newCitlikes);
     }
   },
-methods:{
-rafraichi: function(){
-  this.rcompo = this.rcompo + 1;
-},
-changerpage: function(categorie){
-  this.nompage = categorie;
-  this.rcompo = this.rcompo + 1;
-  this.pagecitlike = false;
-},
-tablike: function(citation,name){
-  idlike = this.idlike ++;
-  this.citlikes.push({cit:citation, auteur:name, id:this.idlike});
-  console.log(this.citlikes);
-},
-pagelikes: function(){
-this.pagecitlike = !this.pagecitlike;
-},
-}
+  methods: {
+    rafraichi: function() {
+      this.rcompo = this.rcompo + 1;
+    },
+    changerpage: function(categorie) {
+      this.nompage = categorie;
+      this.rcompo = this.rcompo + 1;
+      this.pagecitlike = false;
+    },
+    tablike: function(citation, name, id) {
+      // idlike = this.idlike++;
+      this.citlikes.push({
+        cit: citation,
+        auteur: name,
+        id: id
+      });
+      console.log(this.citlikes);
+    },
+    pagelikes: function() {
+      this.pagecitlike = !this.pagecitlike;
+    },
+  }
 })
