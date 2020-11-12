@@ -2,6 +2,24 @@
     display: flex;
     width: 100%;
 }
+#svgcit{
+width: 30%;
+text-align: center;
+margin-bottom: -4%;
+}
+#svgcit path {
+  stroke-dasharray: 100%;
+  stroke-dashoffset: 100%;
+  stroke: black;
+  animation: dash 2.5s linear forwards;
+  fill-opacity:0;
+}
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+    fill-opacity:1;
+  }
+}
 
 #sidebar {
   box-shadow: 2px 0px 10px 0px #5d5a5a;
@@ -14,6 +32,19 @@
     background: #29335C;
     color: #F3A712;
     transition: all 0.3s;
+}
+#signature{
+  text-align: center;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+}
+#signature a{
+  color: #ffd400;
+  text-decoration: none;
+}
+#signature a:hover{
+color: #ff8100;
 }
 body{
   background: rgb(238,174,202);
@@ -54,6 +85,7 @@ background: linear-gradient(90deg, rgba(245,255,0,1) 0%, rgb(255 201 2) 50%, rgb
       padding: 6%;
       margin-bottom: 5%;
       font-size: 1.5em;
+      border-radius: 25px;
 
 }
 .aucunecit{
