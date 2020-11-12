@@ -190,7 +190,7 @@ background: linear-gradient(90deg, rgba(245,255,0,1) 0%, rgb(255 201 2) 50%, rgb
     min-width: 100%;
   }
 }
-/* @media screen and (min-width: 425px) and (max-width: 1024px) {
+@media screen and (min-width: 425px) and (max-width: 1024px) {
   .citation {
     min-width: 110%;
   }
@@ -204,4 +204,4 @@ background: linear-gradient(90deg, rgba(245,255,0,1) 0%, rgb(255 201 2) 50%, rgb
     padding: 4%;
     min-width: 100%;
   }
-} */
+}
