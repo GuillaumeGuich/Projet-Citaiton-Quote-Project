@@ -5,14 +5,14 @@ Vue.component('main-citation', {
 </div>
 <div class="row affichage">
 <boutonlike v-on:likeButton='ajoutlike'></boutonlike>
-<div class="col-6">
+<div class="col-lg-6 col-sm-8">
 <div class="citation">
 <i>{{citation.citation}}</i>
 <br/>
 <span class="auteur">{{citation.auteur}}</span>
 </div>
 </div>
-<div class="col-3">
+<div class="col-lg-3 col-sm-2">
 <div class="random">
 <button type="button" class="btn btn-info" v-on:click="recharger()" :key="refrcompo"> <i class="fas fa-random"></i></button>
 <div class="info" id="aleatip"><p>Nouvelle citation</p></div>
@@ -65,7 +65,7 @@ methods: {
 })
 
 Vue.component('boutonlike', {
-  template: `    <div class="col-3 liking">
+  template: `    <div class="col-lg-3  col-sm-2 liking">
   <div class="like">
   <button type="btn button" class="likebutton" v-on:click="likebutton()"><i class="fas fa-heart"></i></button>
   <div class="info" id="favoritip"><p id="favtext">Aimer la citation</p></div>
@@ -132,20 +132,53 @@ Vue.component('renducitunique', {
 
 
 Vue.component('nav-bar', {
-  template: `                  <nav id="sidebar">
-                    <div class="sidebar-header">
-                        <h2 class="text-center">Menu</h2>
-                          <ul class="nav flex-column cat">
-                                <li class="nav-item"><button class="btn catbutton" v-on:click="pagelike()"><i class="fas fa-heart coeurmenu"></i> Mes citations aimées</button>
-                                <li class="nav-item" v-for="categorie in lescategories">
-                                  <button type="button" class="btn catbutton" v-on:click="changerpage(categorie)">{{categorie}}</button>
-                                </li>
-                          </ul>
-                        </div>
+  template: `
+        <div class="row">
+          <div class="col-12 px-0">
+              <div id="totmenu">
+                  <nav id="sidebar" role="navigation">
+                        <div class="sidebar-header">
+                              <h2 class="text-center titremenu">Menu</h2>
+                              <ul class="nav flex-column cat">
+                                  <li class="nav-item"><button class="btn catbutton" v-on:click="pagelike()"><i class="fas fa-heart coeurmenu"></i> Mes citations aimées</button>
+                                  <li class="nav-item" v-for="categorie in lescategories">
+                                    <button type="button" class="btn catbutton" v-on:click="changerpage(categorie)">{{categorie}}</button>
+                                  </li>
+                              </ul>
+                          </div>
                         <div id="signature">
-                        <h5>Crée par <a href="https://guiguillaume.alwaysdata.net/" target="_blank">Guillaume Guichard</a></h5>
+                          <h5>Crée par <a href="https://guiguillaume.alwaysdata.net/" target="_blank">Guillaume Guichard</a></h5>
                         </div>
-                 </nav>
+                    </nav>
+
+                    <div class="mobilemenu navbar d-lg-none">
+                      <div class="row">
+                        <div class="col-3">
+                          <button type="button" class="hamburger" data-toggle="collapse" data-target="#myNavbar">
+                          <i class="fas fa-bars"></i>
+                          </button>
+                        </div>
+                        <div class="col-9">
+                          <svgcit id="svgmobile"></svgcit>
+                        </div>
+                      </div>
+
+                            <div class="col-12">
+                                <div id="myNavbar" class="collapse">
+                                  <ul class="nav navbar-nav flex-column cat">
+                                      <li class="nav-item"><button class="btn catbutton" v-on:click="pagelike()"><i class="fas fa-heart coeurmenu"></i> Mes citations aimées</button>
+                                      <li class="nav-item" v-for="categorie in lescategories">
+                                        <button type="button" class="btn catbutton" v-on:click="changerpage(categorie)">{{categorie}}</button>
+                                      </li>
+                                      </ul>
+                                </div>
+                            </div>
+
+                      </div>
+                  </div>
+                  </div>
+                  </div>
+
 `,
   props: ['lescategories'],
   methods: {
@@ -160,7 +193,7 @@ Vue.component('nav-bar', {
 })
 
 Vue.component('svgcit', {
-  template: `<svg version="1.1" id="svgcit" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+  template: `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1366 768" style="enable-background:new 0 0 1366 768;" xml:space="preserve">
 <g>
 	<path d="M354.4,184.5c-4.9,22-20.2,48.3-45.9,78.8c-27.7,32.9-51.3,49.3-70.9,49.3c-11.6,0-17.4-5.5-17.4-16.5
@@ -233,7 +266,7 @@ var app = new Vue({
      <div id="content">
        <div class="row">
         <div class="col-lg-12">
-          <svgcit></svgcit>
+          <svgcit id="mainsvg"></svgcit>
         </div>
       </div>
     <renducitlike v-if="pagecitlike === true" v-bind:citations="citlikes"></renducitlike>
