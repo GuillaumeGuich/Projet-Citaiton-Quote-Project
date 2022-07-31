@@ -86,8 +86,7 @@ button.btn.catbutton {
 }
 
 .affichage {
-  width: 100%;
-  align-items: center;
+  padding-right: 0.5em;
 }
 
 .citation {
@@ -349,9 +348,9 @@ button.btn.catbutton {
     color: white;
   }
 
-  #content {
+ /* #content {
     padding-left: 10%;
-  }
+  }*/
 
   #content>div.row.affichage>h2 {
     font-size: 25px;
