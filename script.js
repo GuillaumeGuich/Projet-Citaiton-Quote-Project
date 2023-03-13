@@ -3,7 +3,7 @@ Vue.component('main-citation', {
 <div class="titrecat col-lg-12">
 <h4>{{nomcategorie}}</h4><br/>
 </div>
-<div class="row affichage">
+<div class="row affichage col-lg-12">
 <boutonlike v-on:likeButton='ajoutlike'></boutonlike>
 <div class="col-lg-6 col-sm-8">
 <div class="citation">
