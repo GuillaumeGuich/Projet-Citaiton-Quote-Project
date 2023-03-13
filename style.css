@@ -348,9 +348,12 @@ button.btn.catbutton {
     color: white;
   }
 
- /* #content {
-    padding-left: 10%;
-  }*/
+  #content {
+    padding-left: 0%;
+  }
+  .affichage{
+    margin-left: 0px !important;
+  }
 
   #content>div.row.affichage>h2 {
     font-size: 25px;
@@ -375,13 +378,5 @@ button.btn.catbutton {
 
   .mobilemenu {
     display: block;
-  }
-}
-@media screen and (max-width: 375px) {
-  #content {
-    padding-left: 0%;
-  }
-  .affichage{
-    margin-left: 0px !important;
   }
 }
