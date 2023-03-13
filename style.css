@@ -377,3 +377,11 @@ button.btn.catbutton {
     display: block;
   }
 }
+@media screen and (max-width: 375px) {
+  #content {
+    padding-left: 0%;
+  }
+  .affichage{
+    margin-left: 0px !important;
+  }
+}
