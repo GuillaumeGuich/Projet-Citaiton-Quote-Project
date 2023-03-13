@@ -3,6 +3,6 @@ The Quote project is a website I created to practice with Vue.js to display quot
 
 <a href="https://ibb.co/TTfN62B"><img src="https://i.ibb.co/YWCVmQ7/2.png" alt="2" border="0"></a>
 
-Demo version <a href="https://guiguillaume.alwaysdata.net/citations/">here</a>
+Demo version <a href="https://guillaumeguichard-citations.netlify.app/">here</a>
 
-Created by <a href="https://guiguillaume.alwaysdata.net">Guillaume Guichard</a>
+Created by <a href="https://guillaume-guichard.netlify.app/">Guillaume Guichard</a>
