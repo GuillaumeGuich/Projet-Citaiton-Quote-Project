@@ -147,7 +147,7 @@ Vue.component('nav-bar', {
                               </ul>
                           </div>
                         <div id="signature">
-                          <h5>Crée par <a href="https://guiguillaume.alwaysdata.net/" target="_blank">Guillaume Guichard</a></h5>
+                          <h5>Crée par <a href="https://guillaume-guichard.netlify.app/" target="_blank">Guillaume Guichard</a></h5>
                         </div>
                     </nav>
 
